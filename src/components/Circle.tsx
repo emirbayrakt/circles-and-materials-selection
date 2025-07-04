@@ -84,6 +84,7 @@ export default function Circle({
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp} // Added to handle touch cancel
       onClick={handleClick}
       style={{
         width: r * 2,
@@ -112,6 +113,7 @@ export default function Circle({
         fontSize: 18,
         color: "#222",
         textShadow: "0 1px 4px #fff, 0 0px 2px #fff",
+        touchAction: "none", // Prevent browser gestures interfering with drag
       }}
       className="transition-all duration-200"
     >
