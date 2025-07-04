@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+html {
+  background-color: #f9f9f9;
+}
+
+body {
+  font-size: 17pt;
+  color: #171717;
+  font-family:
+    "San Francisco",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+h1,
+.heading-xl {
+  font-size: 28pt;
+  font-weight: 600;
+}
+
+h2,
+.heading-lg {
+  font-size: 22pt;
+  font-weight: 600;
+}
+
+.caption {
+  font-size: 13pt;
+  color: #525252;
+}
+
+.footnote {
+  font-size: 11pt;
+  color: #737373;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 rounded-full;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Webkit */
+}
