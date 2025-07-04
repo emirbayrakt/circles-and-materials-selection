@@ -67,7 +67,7 @@ const ConfettiModal: React.FC<ConfettiModalProps> = ({ active, onClose }) => {
           </button>
           {/* Party hat icon */}
           <div className="text-5xl mb-2">🥳</div>
-          Submit Successfully!
+          Submitted Successfully!
           <br />
           <span className="text-base font-normal text-neutral-500">
             Please check console log
