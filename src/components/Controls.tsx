@@ -60,10 +60,12 @@ export default function Controls({
     const box = containerRef.current?.getBoundingClientRect();
     if (!box) return;
     // If either is empty, use center (within bounding box)
-    if (!Number.isFinite(px)) px = box.width / 2;
-    if (!Number.isFinite(py)) py = box.height / 2;
+    if (!Number.isFinite(px)) px = min; // Start from minimum X
+    if (!Number.isFinite(py)) py = min; // Start from minimum Y (bottom-left)
+    // Convert from bottom-left coordinates to top-left coordinates
+    const topLeftY = box.height - py;
     // Clamp to allowed area
-    const { x: clampedX, y: clampedY } = clampXY(px, py);
+    const { x: clampedX, y: clampedY } = clampXY(px, topLeftY);
     onAdd(clampedX, clampedY);
   };
 
@@ -79,23 +81,19 @@ export default function Controls({
           </div>
           <div className="grid grid-cols-2 gap-4">
             <label className="flex flex-col gap-1">
-              <span className="text-sm caption">X (px)</span>
+              <span className="text-sm caption">X (px) - from left</span>
               <input
                 value={x}
                 onChange={handle(setX)}
-                min={min}
-                max={maxX}
                 type="number"
                 className="px-3 py-2 bg-neutral-100 rounded-xl outline-none focus:ring-2 ring-neutral-300 font-mono text-base min-h-[44px]"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-sm caption">Y (px)</span>
+              <span className="text-sm caption">Y (px) - from bottom</span>
               <input
                 value={y}
                 onChange={handle(setY)}
-                min={min}
-                max={maxY}
                 type="number"
                 className="px-3 py-2 bg-neutral-100 rounded-xl outline-none focus:ring-2 ring-neutral-300 font-mono text-base min-h-[44px]"
               />

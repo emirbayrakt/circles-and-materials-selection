@@ -131,10 +131,10 @@ export default function App() {
     if (!box) return;
     const payload = circles.map(({ id, xPx, yPx }) => ({
       id,
-      px: { x: xPx, y: yPx },
+      px: { x: xPx, y: box.height - yPx }, // Convert to bottom-left coordinates
       pct: {
         x: +((xPx / box.width) * 100).toFixed(2),
-        y: +((yPx / box.height) * 100).toFixed(2),
+        y: +(((box.height - yPx) / box.height) * 100).toFixed(2), // Convert to bottom-left percentages
       },
     }));
     console.clear();
@@ -142,7 +142,7 @@ export default function App() {
     const readablePayload = payload
       .map(
         (c, i) =>
-          `Circle ${i + 1}: (x: ${c.px.x.toFixed(1)} px, y: ${c.px.y.toFixed(1)} px) | (${c.pct.x}% , ${c.pct.y}%)`,
+          `Circle ${i + 1}: (x: ${c.px.x.toFixed(1)} px, y: ${c.px.y.toFixed(1)} px from bottom-left) | (${c.pct.x}% from left, ${c.pct.y}% from bottom)`,
       )
       .join("\n");
     console.log("Circle Details:\n" + readablePayload);
